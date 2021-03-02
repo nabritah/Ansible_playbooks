@@ -1,0 +1,21 @@
+---
+
+ - hosts: localhost
+   connection: local
+   tasks:
+           - name: create ec2 instance
+             ec2:
+                     key_name: "{{ KEYNAME }}"
+                     instance_type: "{{ INSTANCCE_TYPE }}"
+                     image: "{{ IMAGE }}"
+                     wait: yes
+                     group: "{{ SG_GROUP }}"
+                     #group: webserver (could be a security group with whatever ports allowed))
+                     count: "{{ COUNT }}"
+                     #assign_public_ip: yes
+                     #vpc_subnet_id: subnet_29e63245
+                     region: "{{ REGION }}"
+                     #aws_access_key:
+                     #aws_secret_key: 
+                     instance tags:
+                               Name: "{{ TAG }}"
